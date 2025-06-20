@@ -5,9 +5,12 @@ import os
 
 app = Flask(__name__)
 
+# Use environment variable for port or default to 10000
+port = int(os.environ.get('PORT', 10000))
+
 # Ensure the data directory exists
-os.makedirs(os.path.join(app.instance_path, 'data'), exist_ok=True)
-RESPONSES_FILE = os.path.join(app.instance_path, 'data', 'responses.csv')
+os.makedirs('data', exist_ok=True)
+RESPONSES_FILE = 'data/responses.csv'
 
 def save_response(name, response):
     file_exists = os.path.isfile(RESPONSES_FILE)
@@ -54,6 +57,4 @@ def summary():
     return render_template('summary.html', responses=responses, now=now)
 
 if __name__ == '__main__':
-    # Create instance folder if it doesn't exist
-    os.makedirs(app.instance_path, exist_ok=True)
-    app.run(host='0.0.0.0', port=10000)
+    app.run(host='0.0.0.0', port=port)
