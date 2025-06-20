@@ -1,0 +1,16 @@
+{
+  "name": "wedding-invite",
+  "version": "1.0.0",
+  "description": "Wedding Invitation Website",
+  "scripts": {
+    "build": "npm run copy-assets",
+    "copy-assets": "ncp templates public && ncp static public/static",
+    "dev": "live-server --open=public"
+  },
+  "dependencies": {
+    "ncp": "^2.0.0"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
