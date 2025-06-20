@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Response Received - Party Invitation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            {% if choice == 'accepted' %}
+                <div class="response-message">
+                    <h2>Thank you, {{ name }}! </h2>
+                    <p>We're so excited you'll be joining us for the party!</p>
+                    <p>Get ready for an amazing time with great music, delicious food, and wonderful company.</p>
+                </div>
+                <div class="party-details">
+                    <h3>Details</h3>
+                    <p>Saturday, June 25, 2025</p>
+                    <p>7:00 PM - 11:00 PM</p>
+                </div>
+            {% elif choice == 'denied' %}
+                <div class="response-message">
+                    <h2>  NOOOOOOOO , {{ name }} well FUCK YOU then!</h2>
+                    <p>We're not sorry you won't be able to make it this time.go fuck yourself</p>
+                    <p>Thank you for letting us know. We hope to see you never</p>
+                </div>
+            {% endif %}
+            
+            <div class="button-group" style="margin-top: 2rem;">
+                <a href="{{ url_for('index') }}" class="btn btn-primary">Back to Invitation</a>
+                <a href="{{ url_for('summary') }}" class="btn btn-secondary">View All Responses</a>
+            </div>
+            
+            <div class="footer">
+                <p>Need to change your response? Just submit another response with the same name.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
