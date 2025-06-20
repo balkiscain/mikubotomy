@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest List - Hatsune Miku Party</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>🎤 Guest List</h1>
+            {{#if responses}}
+                <div class="stats">
+                    {{#with (countResponses responses) as |counts|}}
+                    <div class="stat stat-accent">
+                        <span class="stat-number">{{counts.accepted}}</span>
+                        <span class="stat-label">Attending</span>
+                    </div>
+                    <div class="stat stat-secondary">
+                        <span class="stat-number">{{counts.denied}}</span>
+                        <span class="stat-label">Can't Make It</span>
+                    </div>
+                    <div class="stat stat-primary">
+                        <span class="stat-number">{{counts.total}}</span>
+                        <span class="stat-label">Total Responses</span>
+                    </div>
+                    {{/with}}
+                </div>
+                
+                <div class="response-table-container">
+                    <table class="response-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Response</th>
+                                <th>Timestamp</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each responses}}
+                            <tr class="glow-row">
+                                <td>{{this.name}}</td>
+                                <td>{{this.response}}</td>
+                                <td>{{formatDate this.timestamp}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            {{else}}
+                <div class="response-message" style="margin: 2rem 0;">
+                    <p>No responses yet. Be the first to respond</p>
+                </div>
+            {{/if}}
+            
+            <div class="button-group" style="margin-top: 2rem;">
+                <a href="/" class="btn btn-accept">Back to Invitation</a>
+                <a href="/summary" class="btn btn-secondary">Refresh</a>
+            </div>
+            
+            <div class="footer">
+                <p>This page updates automatically. {{formatDate now 'HH:mm:ss'}}</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
